@@ -1,41 +1,41 @@
 import pytest
-from hw.object_dict import ObjectDict
+from hw.object_dict import ObjectDict, od_type
 
 
 def test_integer():
     # Verify integer pass-through
     value = 4567
-    assert ObjectDict(value) is value
+    assert od_type(value) is value
 
 
 def test_string():
     # Verify string pass-through
     value = "4567"
-    assert ObjectDict(value) is value
+    assert od_type(value) is value
 
 
 def test_empty_list():
-    value = ObjectDict([])
+    value = od_type([])
     assert type(value) is list
     assert value == []
 
 
 def test_lists():
     list_1 = [1, 2, 3]
-    od = ObjectDict(list_1)
+    od = od_type(list_1)
     assert od == list_1
     for i1, i2 in zip(list_1, od):
         assert i1 is i2
 
 
 def test_empty_object_dict():
-    od_1 = ObjectDict({})
+    od_1 = od_type({})
     assert type(od_1) is ObjectDict
     assert len(od_1) == 0
 
 
 def test_object_dict():
-    od_1 = ObjectDict({"top": "level"})
+    od_1 = od_type({"top": "level"})
     assert type(od_1) is ObjectDict
     assert od_1.top == "level"
     od_1.new_string = "3456"
